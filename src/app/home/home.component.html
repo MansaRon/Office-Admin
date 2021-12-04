@@ -1,0 +1,44 @@
+<div class="container-fluid backgroundColor pt-5 pb-5 px-3">
+  <h2 class="fw-bold p-3">All Offices</h2>
+
+  <div class="card text-dark bg-light mb-3 colorBorder" *ngFor="let officeDetails of officeData">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="fw-bold p-3" style="cursor: pointer;" (click)="viewOffice(officeDetails)">{{ officeDetails.companyName }}</h2>
+      <i class="bi bi-pencil" style="width: 10%; cursor: pointer;"></i>
+    </div>
+    <div class="d-flex justify-content-start align-items-center">
+      <img src="../../assets/people.png" style="padding-left: 1em;">
+      <p style="margin-bottom: 0px; padding-left: 0.7em;"><strong>{{ officeDetails.numOfficePeople.length }}</strong> Staff Members in Office</p>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <hr class="new1">
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <p (click)="dropDownClicked()" style="padding-left: 0.7em;" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">More Info
+        <img src="../../assets/arrow-down.png" *ngIf="!arrow">
+        <img src="../../assets/arrow-up.png" *ngIf="arrow">
+      </p>
+    </div>
+    <div class="d-flex justify-content-start align-items-center">
+      <div class="collapse" id="collapseExample">
+        <div class="d-flex justify-content-start align-items-center">
+          <img src="../../assets/Phone.jpg" style="padding-left: 1em;">
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">{{ officeDetails.officeNumber }}</p>
+        </div>
+        <div class="d-flex justify-content-start align-items-center my-3">
+          <img src="../../assets/Email.png" style="padding-left: 1em;">
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">{{ officeDetails.officeEmail }}</p>
+        </div>
+        <div class="d-flex justify-content-start align-items-center my-3">
+          <img src="../../assets/people.png" style="padding-left: 1em;">
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">Office Capacity: {{ officeDetails.officeCapacity }}</p>
+        </div>
+        <div class="d-flex justify-content-start align-items-center my-3">
+          <img src="../../assets/location.png" style="padding-left: 1em;">
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">{{ officeDetails.officeAddress }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

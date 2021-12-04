@@ -1,0 +1,63 @@
+<div class="container-fluid backgroundColor pt-5 pb-5 px-3">
+  <div class="d-flex justify-content-start align-items-center">
+    <img src="../../assets/arrow-left.png" (click)="goBack()" style="cursor: pointer;">
+    <h2 style="padding-left: 4.5em;">Office</h2>
+  </div>
+
+  <div class="card text-dark bg-light mb-3 colorBorder">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="fw-bold p-3" style="cursor: pointer;">{{ officeData.companyName }}</h2>
+      <i class="bi bi-pencil" style="width: 10%; cursor: pointer;"></i>
+    </div>
+    <div class="d-flex justify-content-start align-items-center">
+      <img src="../../assets/people.png" style="padding-left: 1em;">
+      <p style="margin-bottom: 0px; padding-left: 0.7em;"><strong>{{ officeData.numOfficePeople.length }}</strong> Staff Members in Office</p>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <hr class="new1">
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <p (click)="dropDownClicked()" style="padding-left: 0.7em;" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">More Info
+        <img src="../../assets/arrow-down.png" *ngIf="!arrow">
+        <img src="../../assets/arrow-up.png" *ngIf="arrow">
+      </p>
+    </div>
+    <div class="d-flex justify-content-start align-items-center">
+      <div class="collapse" id="collapseExample">
+        <div class="d-flex justify-content-start align-items-center">
+          <img src="../../assets/Phone.jpg" style="padding-left: 1em;">
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">{{ officeData.officeNumber }}</p>
+        </div>
+        <div class="d-flex justify-content-start align-items-center my-3">
+          <img src="../../assets/Email.png" style="padding-left: 1em;">
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">{{ officeData.officeEmail }}</p>
+        </div>
+        <div class="d-flex justify-content-start align-items-center my-3">
+          <img src="../../assets/people.png" style="padding-left: 1em;">
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">Office Capacity: {{ officeData.officeCapacity }}</p>
+        </div>
+        <div class="d-flex justify-content-start align-items-center my-3">
+          <img src="../../assets/location.png" style="padding-left: 1em;">
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">{{ officeData.officeAddress }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-start">
+    <input class="form-control" type="text" placeholder="Search.." width="95%">
+    <!-- <i class="bi bi-search"></i> -->
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="fw-bold fs-3 py-3" style="cursor: pointer;">Staff Members in Office</h1>
+    <h1> {{ officeData.numOfficePeople.length }}</h1>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center py-2" *ngFor="let userDetails of officeData.numOfficePeople">
+    <img [src]="userDetails.avator">
+    <h3> {{ userDetails.name + ' ' + userDetails.surname }}</h3>
+    <img src="../../assets/edit_user.png">
+  </div>
+
+</div>
