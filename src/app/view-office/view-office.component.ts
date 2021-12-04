@@ -31,4 +31,8 @@ export class ViewOfficeComponent implements OnInit {
     }
   }
 
+  public editUser(data) {
+    console.log(data);
+  }
+
 }

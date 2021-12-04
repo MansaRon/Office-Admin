@@ -57,7 +57,57 @@
   <div class="d-flex justify-content-between align-items-center py-2" *ngFor="let userDetails of officeData.numOfficePeople">
     <img [src]="userDetails.avator">
     <h3> {{ userDetails.name + ' ' + userDetails.surname }}</h3>
-    <img src="../../assets/edit_user.png">
+    <img src="../../assets/edit_user.png" (click)="editUser(userDetails)" data-bs-toggle="modal" data-bs-target="#staffMember" style="cursor: pointer;">
   </div>
 
+</div>
+
+<div class="modal fade" id="staffMember" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
+        <button type="button" class="btn btn-primary" style="width: 80%; border-radius: 1.8em" data-bs-target="#editStaffMember" data-bs-toggle="modal">Edit Staff Member</button>
+        <button type="button" class="btn btn-link" style="width: 80%; border-radius: 1.8em" data-bs-target="#deleteStaffMember" data-bs-toggle="modal">Delete Staff Member</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editStaffMember" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: none;">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Edit Staff Member</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <input class="form-control input-radius" type="text" placeholder="Name"/>
+          <input class="form-control input-radius" type="text" placeholder="Surname"/>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
+        <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteStaffMember" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Are you sure you want to Delete Staff Member?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
+        <button type="button" class="btn btn-danger" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal" data-bs-toggle="modal">Delete Staff Member</button>
+        <button type="button" class="btn btn-link" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal" data-bs-toggle="modal">Keep Staff Member</button>
+        <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button> -->
+      </div>
+    </div>
+  </div>
 </div>
