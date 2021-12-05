@@ -12,3 +12,27 @@ hr.new1 {
   width: 19em;
   border-top: 1x solid #0D4477;
 }
+
+.loginInput {
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem !important;
+  margin-bottom: 0.8em;
+}
+
+.float {
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0D4477;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  padding-top: 15px;
+  cursor: pointer;
+}
+
+.my-float {
+	margin-top:22px;
+}

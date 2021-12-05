@@ -132,4 +132,13 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/view-offices');
   }
 
+  public editOffice(officeDetails) {
+    localStorage.setItem("officeData", JSON.stringify(officeDetails));
+    this.router.navigateByUrl('/edit-office');
+  }
+
+  public createNewOffice() {
+    this.router.navigateByUrl('/new-office');
+  }
+
 }

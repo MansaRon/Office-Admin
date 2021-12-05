@@ -85,8 +85,31 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <input class="form-control input-radius" type="text" placeholder="Name"/>
-          <input class="form-control input-radius" type="text" placeholder="Surname"/>
+
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <input class="form-control input-radius mb-3" type="text" placeholder="Name"/>
+                <input class="form-control input-radius" type="text" placeholder="Surname"/>
+              </div>
+              <div class="carousel-item">
+                <p>Test</p>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
@@ -107,6 +130,53 @@
         <button type="button" class="btn btn-danger" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal" data-bs-toggle="modal">Delete Staff Member</button>
         <button type="button" class="btn btn-link" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal" data-bs-toggle="modal">Keep Staff Member</button>
         <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<a class="float" data-bs-toggle="modal" data-bs-target="#newStaffMember" style="cursor: pointer;">
+  <i class="bi bi-plus-lg my-float"></i>
+</a>
+
+<div class="modal fade" id="newStaffMember" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: none;">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">New Staff Member</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button> -->
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <input class="form-control input-radius mb-3" type="text" placeholder="Name" [(ngModel)]="staffMemberName" />
+                <input class="form-control input-radius" type="text" placeholder="Surname"  [(ngModel)]="staffMemberSurname"/>
+              </div>
+              <!-- <div class="carousel-item">
+                <p>Test</p>
+              </div> -->
+            </div>
+            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button> -->
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
+        <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal">Next</button>
       </div>
     </div>
   </div>

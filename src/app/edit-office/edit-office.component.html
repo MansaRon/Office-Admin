@@ -1,0 +1,52 @@
+<div class="container-fluid backgroundColor pt-5 pb-5 px-3">
+  <div class="d-flex justify-content-start align-items-center">
+    <img src="../../assets/arrow-left.png" (click)="goBack()" style="cursor: pointer;">
+    <h2 style="padding-left: 4.5em;">Edit Office</h2>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-10 mt-3">
+      <input class="form-control input-radius loginInput" type="text" [placeholder]="officeName" [(ngModel)]="officeName">
+    </div>
+    <div class="col-10">
+      <input class="form-control input-radius loginInput" type="text" [placeholder]="officeAddress" [(ngModel)]="officeAddress">
+    </div>
+    <div class="col-10">
+      <input class="form-control input-radius loginInput" type="text" [placeholder]="officeEmail" [(ngModel)]="officeEmail">
+    </div>
+    <div class="col-10">
+      <input class="form-control input-radius loginInput" type="text" [placeholder]="officeNumber" [(ngModel)]="officeNumber">
+    </div>
+    <div class="col-10">
+      <input class="form-control input-radius loginInput" type="text" [placeholder]="maximumCapacity" [(ngModel)]="maximumCapacity">
+    </div>
+  </div>
+
+  <div class="row d-flex align-items-center justify-content-start">
+    <h2>Office Colour</h2>
+  </div>
+
+  <div class="row d-flex align-items-center justify-content-evenly">
+    <img src="../../assets/yellow.png" style="width: 15%;">
+    <img src="../../assets/pale_pink.png" style="width: 15%;">
+    <img src="../../assets/orange.png" style="width: 15%;">
+    <img src="../../assets/brown.png" style="width: 15%;">
+    <img src="../../assets/violet.png" style="width: 15%;">
+    <img src="../../assets/pink.png" style="width: 15%;">
+  </div>
+
+  <div class="row d-flex align-items-center justify-content-evenly my-4">
+    <img src="../../assets/ocean_blue.png" style="width: 15%;">
+    <img src="../../assets/green.png" style="width: 15%;">
+    <img src="../../assets/sky_blue.png" style="width: 15%;">
+    <img src="../../assets/blue.png" style="width: 15%;">
+    <img src="../../assets/purple.png" style="width: 15%;">
+  </div>
+
+  <div class="row d-flex align-items-center justify-content-center">
+    <button type="button" class="btn btn-primary my-4" style="width: 70%; border-radius: 1.8em" (click)="editOffice()">Update Office</button>
+    <button type="button" class="btn btn-link" style="width: 70%; border-radius: 1.8em" (click)="deleteOffice()">Delete Office</button>
+  </div>
+
+</div>
+

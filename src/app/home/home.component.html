@@ -4,7 +4,7 @@
   <div class="card text-dark bg-light mb-3 colorBorder" *ngFor="let officeDetails of officeData">
     <div class="d-flex justify-content-between align-items-center">
       <h2 class="fw-bold p-3" style="cursor: pointer;" (click)="viewOffice(officeDetails)">{{ officeDetails.companyName }}</h2>
-      <i class="bi bi-pencil" style="width: 10%; cursor: pointer;"></i>
+      <i class="bi bi-pencil" style="width: 10%; cursor: pointer;" (click)="editOffice(officeDetails)"></i>
     </div>
     <div class="d-flex justify-content-start align-items-center">
       <img src="../../assets/people.png" style="padding-left: 1em;">
@@ -42,3 +42,7 @@
   </div>
 
 </div>
+
+<a class="float" (click)="createNewOffice()">
+  <i class="bi bi-plus-lg my-float"></i>
+</a>

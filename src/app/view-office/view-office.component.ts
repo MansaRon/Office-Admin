@@ -11,6 +11,9 @@ export class ViewOfficeComponent implements OnInit {
   officeData: any;
   arrow: boolean = false;
 
+  staffMemberName: string = '';
+  staffMemberSurname: string = '';
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -33,6 +36,10 @@ export class ViewOfficeComponent implements OnInit {
 
   public editUser(data) {
     console.log(data);
+  }
+
+  public createNewOffice() {
+    // this.router.navigateByUrl('/new-office');
   }
 
 }
