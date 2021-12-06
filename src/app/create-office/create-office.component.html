@@ -4,47 +4,56 @@
     <h2 style="padding-left: 4.5em;">New Office</h2>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col-10 mt-3">
-      <input class="form-control input-radius loginInput" type="text" placeholder="Office Name" [(ngModel)]="officeName">
+  <form role="form" name="officeForm" #officeForm="ngForm" autocomplete="off">
+    <div class="row justify-content-center">
+      <div class="col-10 mt-3">
+        <input class="form-control input-radius loginInput" required name="name" type="text" placeholder="Office Name" [(ngModel)]="officeName" #officeNamee="ngModel" >
+        <div [hidden]="officeNamee.valid || officeNamee.pristine || officeNamee.touched" class="alert alert-danger">Enter In The Office Name</div>
+      </div>
+      <div class="col-10">
+        <input class="form-control input-radius loginInput" required name="address" type="text" placeholder="Physical Address" [(ngModel)]="officeAddress" #officeAddresss="ngModel">
+        <div [hidden]="officeAddresss.valid || officeAddresss.pristine || officeAddresss.touched" class="alert alert-danger">Enter In The Physical Address</div>
+      </div>
+      <div class="col-10">
+        <input class="form-control input-radius loginInput" required name="email" type="text" placeholder="Email Address" [(ngModel)]="officeEmail" #officeEmaill="ngModel">
+        <div [hidden]="officeEmaill.valid || officeEmaill.pristine || officeEmaill.touched" class="alert alert-danger">Enter In The Email Name</div>
+      </div>
+      <div class="col-10">
+        <input class="form-control input-radius loginInput" required name="number" type="text" placeholder="Office Number" [(ngModel)]="officeNumber" #officeNumberr="ngModel" minlength="10" maxlength="10">
+        <div [hidden]="officeNumberr.valid || officeNumberr.pristine || officeNumberr.touched" class="alert alert-danger">Enter In The Office Number</div>
+      </div>
+      <div class="col-10">
+        <input class="form-control input-radius loginInput" required name="maxCapacity" type="text" placeholder="Maximum Capacity" [(ngModel)]="maximumCapacity" #maximumCapacityy="ngModel">
+        <div [hidden]="maximumCapacityy.valid || maximumCapacityy.pristine || maximumCapacityy.touched" class="alert alert-danger">Enter In The Maximum Capacity</div>
+      </div>
     </div>
-    <div class="col-10">
-      <input class="form-control input-radius loginInput" type="text" placeholder="Physical Address" [(ngModel)]="officeAddress">
-    </div>
-    <div class="col-10">
-      <input class="form-control input-radius loginInput" type="text" placeholder="Email Address" [(ngModel)]="officeEmail">
-    </div>
-    <div class="col-10">
-      <input class="form-control input-radius loginInput" type="text" placeholder="Physical Address" [(ngModel)]="officeNumber">
-    </div>
-    <div class="col-10">
-      <input class="form-control input-radius loginInput" type="text" placeholder="Maximum Capacity" [(ngModel)]="maximumCapacity">
-    </div>
-  </div>
 
-  <div class="row d-flex align-items-center justify-content-start">
-    <h2>Office Colour</h2>
-  </div>
+    <div class="row d-flex align-items-center justify-content-start">
+      <h2>Office Colour</h2>
+    </div>
 
-  <div class="row d-flex align-items-center justify-content-evenly">
-    <img src="../../assets/yellow.png" style="width: 15%;">
-    <img src="../../assets/pale_pink.png" style="width: 15%;">
-    <img src="../../assets/orange.png" style="width: 15%;">
-    <img src="../../assets/brown.png" style="width: 15%;">
-    <img src="../../assets/violet.png" style="width: 15%;">
-    <img src="../../assets/pink.png" style="width: 15%;">
-  </div>
+    <div class="row d-flex align-items-center justify-content-evenly">
+      <img src="../../assets/yellow.png" style="width: 15%;" (click)="yellowSelected($event)">
+      <img src="../../assets/pale_pink.png" style="width: 15%;" (click)="palePinkSelected($event)">
+      <img src="../../assets/orange.png" style="width: 15%;" (click)="orangeSelected($event)">
+      <img src="../../assets/brown.png" style="width: 15%;" (click)="brownSelected($event)">
+      <img src="../../assets/violet.png" style="width: 15%;" (click)="violetSelected($event)">
+      <img src="../../assets/pink.png" style="width: 15%;" (click)="pinkSelected($event)">
+    </div>
 
-  <div class="row d-flex align-items-center justify-content-evenly my-4">
-    <img src="../../assets/ocean_blue.png" style="width: 15%;">
-    <img src="../../assets/green.png" style="width: 15%;">
-    <img src="../../assets/sky_blue.png" style="width: 15%;">
-    <img src="../../assets/blue.png" style="width: 15%;">
-    <img src="../../assets/purple.png" style="width: 15%;">
-  </div>
+    <div class="row d-flex align-items-center justify-content-evenly my-4">
+      <img src="../../assets/ocean_blue.png" style="width: 15%;" (click)="oceanBlueSelected($event)">
+      <img src="../../assets/green.png" style="width: 15%;" (click)="greenSelected($event)">
+      <img src="../../assets/sky_blue.png" style="width: 15%;" (click)="skyBlueSelected($event)">
+      <img src="../../assets/blue.png" style="width: 15%;" (click)="blueSelected($event)">
+      <img src="../../assets/purple.png" style="width: 15%;" (click)="purpleSelected($event)">
+    </div>
 
-  <div class="row d-flex align-items-center justify-content-center">
-    <button type="button" class="btn btn-primary" style="width: 70%; border-radius: 1.8em" (click)="addOffice()">Add Office</button>
-  </div>
+    <div class="row d-flex align-items-center justify-content-center">
+      <button type="button" class="btn btn-primary" style="width: 70%; border-radius: 1.8em" (click)="addOffice()">Add Office</button>
+    </div>
+  </form>
+
+
 
 </div>

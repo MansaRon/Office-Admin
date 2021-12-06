@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { getDatabase, ref, set, onValue } from "firebase/database";
+const db = getDatabase();
 
 @Component({
   selector: 'app-home',
@@ -107,7 +109,7 @@ export class HomeComponent implements OnInit {
       officeEmail: "info@specno.com",
       officeCapacity: 16,
       officeAddress: "10 Willie Van Schoor Dr, Bo Oakdale, Cape Town, 7530"
-    },
+    }
   ]
 
   arrow: boolean = false;
@@ -115,7 +117,16 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.officeData);
+    // console.log(this.officeData);
+    this.viewCurrentOffices();
+  }
+
+  public viewCurrentOffices() {
+    const starCountRef = ref(db, 'offices');
+    onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
+    });
   }
 
   public dropDownClicked() {
