@@ -4,49 +4,67 @@
     <h2 style="padding-left: 4.5em;">Edit Office</h2>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col-10 mt-3">
-      <input class="form-control input-radius loginInput" type="text" [placeholder]="officeName" [(ngModel)]="officeName">
+  <form role="form" name="officeForm" #editOfficeForm="ngForm" autocomplete="off">
+    <div class="row justify-content-center">
+      <div class="col-10 mt-3">
+        <input class="form-control input-radius loginInput" name="editName" required type="text" [placeholder]="officeName" [(ngModel)]="officeName">
+      </div>
+      <div class="col-10">
+        <input class="form-control input-radius loginInput"name="editAddress"  required type="text" [placeholder]="officeAddress" [(ngModel)]="officeAddress">
+      </div>
+      <div class="col-10">
+        <input class="form-control input-radius loginInput" name="editEmail" required type="text" [placeholder]="officeEmail" [(ngModel)]="officeEmail">
+      </div>
+      <div class="col-10">
+        <input class="form-control input-radius loginInput" name="editNum" required type="text" [placeholder]="officeNumber" [(ngModel)]="officeNumber" minlength="10" maxlength="10">
+      </div>
+      <div class="col-10">
+        <input class="form-control input-radius loginInput" name="editMax"  required type="text" [placeholder]="maximumCapacity" [(ngModel)]="maximumCapacity">
+      </div>
     </div>
-    <div class="col-10">
-      <input class="form-control input-radius loginInput" type="text" [placeholder]="officeAddress" [(ngModel)]="officeAddress">
+
+    <div class="row d-flex align-items-center justify-content-start">
+      <h2>Office Colour</h2>
     </div>
-    <div class="col-10">
-      <input class="form-control input-radius loginInput" type="text" [placeholder]="officeEmail" [(ngModel)]="officeEmail">
+
+    <div class="row d-flex align-items-center justify-content-evenly">
+      <img [src]="yellow" style="width: 15%; cursor: pointer;" (click)="yellowSelected()">
+      <img [src]="pale_pink" style="width: 15%; cursor: pointer;" (click)="palePinkSelected()">
+      <img [src]="orange" style="width: 15%; cursor: pointer;" (click)="orangeSelected()">
+      <img [src]="brown" style="width: 15%; cursor: pointer;" (click)="brownSelected()">
+      <img [src]="violet" style="width: 15%; cursor: pointer;" (click)="violetSelected()">
+      <img [src]="pink" style="width: 15%; cursor: pointer;" (click)="pinkSelected()">
     </div>
-    <div class="col-10">
-      <input class="form-control input-radius loginInput" type="text" [placeholder]="officeNumber" [(ngModel)]="officeNumber">
+
+    <div class="row d-flex align-items-center justify-content-evenly my-4">
+      <img [src]="ocean_blue" style="width: 15%; cursor: pointer;" (click)="oceanBlueSelected()">
+      <img [src]="green" style="width: 15%; cursor: pointer;" (click)="greenSelected()">
+      <img [src]="sky_blue" style="width: 15%; cursor: pointer;" (click)="skyBlueSelected()">
+      <img [src]="blue" style="width: 15%; cursor: pointer;" (click)="blueSelected()">
+      <img [src]="purple" style="width: 15%; cursor: pointer;" (click)="purpleSelected()">
     </div>
-    <div class="col-10">
-      <input class="form-control input-radius loginInput" type="text" [placeholder]="maximumCapacity" [(ngModel)]="maximumCapacity">
+
+    <div class="row d-flex align-items-center justify-content-center">
+      <button type="button" class="btn btn-primary my-4" style="width: 70%; border-radius: 1.8em" (click)="editOffice()" [disabled]="!editOfficeForm.form.valid">Update Office</button>
+      <h4 class="fw-light fs-3 text-center text-primary py-3">{{ officeAddedMsg }}</h4>
+      <button type="button" class="btn btn-link" style="width: 70%; border-radius: 1.8em" data-bs-toggle="modal" data-bs-target="#deleteOffice">Delete Office</button>
+    </div>
+  </form>
+
+</div>
+
+<div class="modal fade" id="deleteOffice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      <div class="modal-header" style="border-bottom: none; text-align: center;">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Are you sure you want to Delete Office?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
+        <button type="button" class="btn btn-danger" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal" (click)="deleteOffice()">Delete Office</button>
+        <button type="button" class="btn btn-link" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal">Keep Office</button>
+      </div>
     </div>
   </div>
-
-  <div class="row d-flex align-items-center justify-content-start">
-    <h2>Office Colour</h2>
-  </div>
-
-  <div class="row d-flex align-items-center justify-content-evenly">
-    <img src="../../assets/yellow.png" style="width: 15%;">
-    <img src="../../assets/pale_pink.png" style="width: 15%;">
-    <img src="../../assets/orange.png" style="width: 15%;">
-    <img src="../../assets/brown.png" style="width: 15%;">
-    <img src="../../assets/violet.png" style="width: 15%;">
-    <img src="../../assets/pink.png" style="width: 15%;">
-  </div>
-
-  <div class="row d-flex align-items-center justify-content-evenly my-4">
-    <img src="../../assets/ocean_blue.png" style="width: 15%;">
-    <img src="../../assets/green.png" style="width: 15%;">
-    <img src="../../assets/sky_blue.png" style="width: 15%;">
-    <img src="../../assets/blue.png" style="width: 15%;">
-    <img src="../../assets/purple.png" style="width: 15%;">
-  </div>
-
-  <div class="row d-flex align-items-center justify-content-center">
-    <button type="button" class="btn btn-primary my-4" style="width: 70%; border-radius: 1.8em" (click)="editOffice()">Update Office</button>
-    <button type="button" class="btn btn-link" style="width: 70%; border-radius: 1.8em" (click)="deleteOffice()">Delete Office</button>
-  </div>
-
 </div>
 

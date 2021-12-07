@@ -1,14 +1,20 @@
+<div class="container-fluid text-center" id=loading *ngIf="loader">
+  <div class="spinner-grow text-primary text-center" role="status" *ngIf="loader" id="loading-image">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
 <div class="container-fluid backgroundColor pt-5 pb-5 px-3">
   <h2 class="fw-bold p-3">All Offices</h2>
 
   <div class="card text-dark bg-light mb-3 colorBorder" *ngFor="let officeDetails of officeData">
     <div class="d-flex justify-content-between align-items-center">
-      <h2 class="fw-bold p-3" style="cursor: pointer;" (click)="viewOffice(officeDetails)">{{ officeDetails.companyName }}</h2>
+      <h2 class="fw-bold p-3" style="cursor: pointer;" (click)="viewOffice(officeDetails)">{{ officeDetails.officeName }}</h2>
       <i class="bi bi-pencil" style="width: 10%; cursor: pointer;" (click)="editOffice(officeDetails)"></i>
     </div>
     <div class="d-flex justify-content-start align-items-center">
       <img src="../../assets/people.png" style="padding-left: 1em;">
-      <p style="margin-bottom: 0px; padding-left: 0.7em;"><strong>{{ officeDetails.numOfficePeople.length }}</strong> Staff Members in Office</p>
+      <p style="margin-bottom: 0px; padding-left: 0.7em;"><strong>5</strong> Staff Members in Office</p>
     </div>
     <div class="d-flex justify-content-center align-items-center">
       <hr class="new1">
@@ -31,7 +37,7 @@
         </div>
         <div class="d-flex justify-content-start align-items-center my-3">
           <img src="../../assets/people.png" style="padding-left: 1em;">
-          <p style="margin-bottom: 0px; padding-left: 0.7em;">Office Capacity: {{ officeDetails.officeCapacity }}</p>
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">Office Capacity: {{ officeDetails.maximumCapacity }}</p>
         </div>
         <div class="d-flex justify-content-start align-items-center my-3">
           <img src="../../assets/location.png" style="padding-left: 1em;">

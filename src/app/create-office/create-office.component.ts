@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getDatabase, ref, set, onValue } from "firebase/database";
-
+import { getDatabase, ref, set, push } from "firebase/database";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-office',
@@ -16,7 +15,7 @@ export class CreateOfficeComponent implements OnInit {
   officeEmail: string = '';
   officeNumber: string = '';
   officeColor: string = '';
-  maximumCapacity: number;
+  maximumCapacity: string = '';
   numOfficePeople: any = [];
 
   blue: string = 'assets\\blue.png';
@@ -31,110 +30,132 @@ export class CreateOfficeComponent implements OnInit {
   violet: string = 'assets\\violet.png';
   yellow: string = 'assets\\yellow.png';
 
-  constructor(private router: Router, private http: HttpClient) {
+  officeAddedMsg: string = '';
+  counter: number = 1;
+  publicTimer: any;
 
-  }
+  constructor(private router: Router, private http: HttpClient) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   public goBack() {
     this.router.navigateByUrl('/');
   }
 
-  // function writeUserData(userId, name, email, imageUrl) {
-  //   const db = getDatabase();
-  //   set(ref(db, 'users/' + userId), {
-  //     username: name,
-  //     email: email,
-  //     profile_picture : imageUrl
-  //   });
-  // }
-
   public addOffice() {
     const db = getDatabase();
-    let officeObj = {
-      officeName: this.officeName,
-      officeAddress: this.officeAddress,
-      officeEmail: this.officeEmail,
-      officeNumber: this.officeNumber,
-      maximumCapacity: this.maximumCapacity,
-      officeColor: this.officeColor,
-      numOfficePeople: this.numOfficePeople
-    }
-    console.log(officeObj);
-    set(ref(db, 'offices/'), {officeObj});
+    const timestamp = new Date().valueOf();
 
-    // this.http.post('https://lekker-code-db-default-rtdb.firebaseio.com/offices.json', officeObj).subscribe(
-    //   response => {
-    //     console.log(response);
-    //   }, error => {
-    //     console.log(error);
-    //   }, () => {
+    let office = { officeName: this.officeName, officeAddress: this.officeAddress,
+      officeEmail: this.officeEmail, officeNumber: this.officeNumber,
+      maximumCapacity: this.maximumCapacity, officeColor: this.officeColor,
+      numOfficePeople: this.numOfficePeople}
+
+    // const postListRef = ref(db, 'offices');
+    // const newPostRef = push(postListRef);
+    // set(newPostRef, {
+    //   officeName: this.officeName,
+    //   officeAddress: this.officeAddress,
+    //   officeEmail: this.officeEmail,
+    //   officeNumber: this.officeNumber,
+    //   maximumCapacity: this.maximumCapacity,
+    //   officeColor: this.officeColor,
+    //   numOfficePeople: this.numOfficePeople}).catch((error) => {console.log(error)}).finally(() => {
+    //     console.log('Success');
+    //     this.officeAddedMsg = 'Office details successfully added';
     //     this.officeName = '';
     //     this.officeAddress = '';
     //     this.officeEmail = '';
     //     this.officeNumber = '';
     //     this.maximumCapacity = null;
     //     this.officeColor = '';
-    //   }
-    // )
+    //     this.timer();
+    //   });
 
+    // let obj = ref(db, 'offices/' + timestamp);
+    // set(obj, { officeName: this.officeName, officeAddress: this.officeAddress,
+    //   officeEmail: this.officeEmail, officeNumber: this.officeNumber,
+    //   maximumCapacity: this.maximumCapacity, officeColor: this.officeColor,
+    //   numOfficePeople: this.numOfficePeople}).catch((error) => {console.log(error)}).finally(() => {
+    //   console.log('Success');
+    //   this.officeAddedMsg = 'Office details successfully added';
+    //   this.officeName = '';
+    //   this.officeAddress = '';
+    //   this.officeEmail = '';
+    //   this.officeNumber = '';
+    //   this.maximumCapacity = null;
+    //   this.officeColor = '';
+    //   this.timer();
+    // });
+
+    this.http.post('https://lekker-code-db-default-rtdb.firebaseio.com/offices.json', office).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
+    }, () => {
+      console.log('Finally');
+      this.officeAddedMsg = 'Office details successfully added';
+      this.officeName = '';
+      this.officeAddress = '';
+      this.officeEmail = '';
+      this.officeNumber = '';
+      this.maximumCapacity = '';
+      this.officeColor = '';
+      this.timer();
+    })
   }
 
-  public palePinkSelected(event) {
-    this.pale_pink = event.target.currentSrc;
+  public timer(): void {
+    this.publicTimer = setInterval(() => {
+      if (this.counter <= 0) {
+        clearInterval(this.publicTimer);
+        this.router.navigateByUrl('/');
+      }
+      this.counter -= 1;
+    }, 1000)
+  }
+
+  public palePinkSelected() {
     this.officeColor = this.pale_pink;
   }
 
-  public yellowSelected(event) {
-    this.yellow = event.target.currentSrc;
+  public yellowSelected() {
     this.officeColor = this.yellow;
   }
 
-  public orangeSelected(event) {
-    this.orange = event.target.currentSrc;
+  public orangeSelected() {
     this.officeColor = this.orange;
   }
 
-  public brownSelected(event) {
-    this.brown = event.target.currentSrc;
+  public brownSelected() {
     this.officeColor = this.brown;
   }
 
-  public violetSelected(event) {
-    this.violet = event.target.currentSrc;
+  public violetSelected() {
     this.officeColor = this.violet;
   }
 
-  public pinkSelected(event) {
-    this.pink = event.target.currentSrc;
+  public pinkSelected() {
     this.officeColor = this.pink;
   }
 
-  public oceanBlueSelected(event) {
-    this.ocean_blue = event.target.currentSrc;
+  public oceanBlueSelected() {
     this.officeColor = this.ocean_blue;
   }
 
-  public greenSelected(event) {
-    this.green = event.target.currentSrc;
-    this.officeColor = this.green;
+  public greenSelected() {
+   this.officeColor = this.green;
   }
 
-  public skyBlueSelected(event) {
-    this.sky_blue = event.target.currentSrc;
+  public skyBlueSelected() {
     this.officeColor = this.sky_blue;
   }
 
-  public blueSelected(event) {
-    this.blue = event.target.currentSrc;
+  public blueSelected() {
     this.officeColor = this.blue;
   }
 
-  public purpleSelected(event) {
-    this.purple = event.target.currentSrc;
+  public purpleSelected() {
     this.officeColor = this.purple;
   }
 

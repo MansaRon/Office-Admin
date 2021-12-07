@@ -6,12 +6,12 @@
 
   <div class="card text-dark bg-light mb-3 colorBorder">
     <div class="d-flex justify-content-between align-items-center">
-      <h2 class="fw-bold p-3" style="cursor: pointer;">{{ officeData.companyName }}</h2>
+      <h2 class="fw-bold p-3" style="cursor: pointer;">{{ officeData.officeName }}</h2>
       <i class="bi bi-pencil" style="width: 10%; cursor: pointer;"></i>
     </div>
     <div class="d-flex justify-content-start align-items-center">
       <img src="../../assets/people.png" style="padding-left: 1em;">
-      <p style="margin-bottom: 0px; padding-left: 0.7em;"><strong>{{ officeData.numOfficePeople.length }}</strong> Staff Members in Office</p>
+      <p style="margin-bottom: 0px; padding-left: 0.7em;"><strong>{{ users.length }}</strong> Staff Members in Office</p>
     </div>
     <div class="d-flex justify-content-center align-items-center">
       <hr class="new1">
@@ -34,7 +34,7 @@
         </div>
         <div class="d-flex justify-content-start align-items-center my-3">
           <img src="../../assets/people.png" style="padding-left: 1em;">
-          <p style="margin-bottom: 0px; padding-left: 0.7em;">Office Capacity: {{ officeData.officeCapacity }}</p>
+          <p style="margin-bottom: 0px; padding-left: 0.7em;">Office Capacity: {{ officeData.maximumCapacity }}</p>
         </div>
         <div class="d-flex justify-content-start align-items-center my-3">
           <img src="../../assets/location.png" style="padding-left: 1em;">
@@ -45,16 +45,16 @@
   </div>
 
   <div class="d-flex justify-content-start">
-    <input class="form-control" type="text" placeholder="Search.." width="95%">
+    <input class="form-control" type="text" placeholder="Search.." width="95%" [(ngModel)]="filterUsers" (ngModelChange)="testChange(filterUsers)">
     <!-- <i class="bi bi-search"></i> -->
   </div>
 
   <div class="d-flex justify-content-between align-items-center">
     <h1 class="fw-bold fs-3 py-3" style="cursor: pointer;">Staff Members in Office</h1>
-    <h1> {{ officeData.numOfficePeople.length }}</h1>
+    <h1> {{ users.length }}</h1>
   </div>
 
-  <div class="d-flex justify-content-between align-items-center py-2" *ngFor="let userDetails of officeData.numOfficePeople">
+  <div class="d-flex justify-content-between align-items-center py-2" *ngFor="let userDetails of users | filter: filterUsers">
     <img [src]="userDetails.avator">
     <h3> {{ userDetails.name + ' ' + userDetails.surname }}</h3>
     <img src="../../assets/edit_user.png" (click)="editUser(userDetails)" data-bs-toggle="modal" data-bs-target="#staffMember" style="cursor: pointer;">
@@ -85,35 +85,13 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
-
-          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <input class="form-control input-radius mb-3" type="text" placeholder="Name"/>
-                <input class="form-control input-radius" type="text" placeholder="Surname"/>
-              </div>
-              <div class="carousel-item">
-                <p>Test</p>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-
+          <input class="form-control input-radius mb-3" type="text" placeholder="Name" [(ngModel)]="newStaffName"/>
+          <input class="form-control input-radius" type="text" placeholder="Surname" [(ngModel)]="newStaffSurname"/>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
-        <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal">Next</button>
+        <button class="btn btn-primary my-4" (click)="updateUserDetails()">Update User Member</button>
+        <h4 class="fw-light fs-3 text-center text-primary py-3">{{ staffUpdateMsg }}</h4>
       </div>
     </div>
   </div>
@@ -129,13 +107,12 @@
       <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
         <button type="button" class="btn btn-danger" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal" data-bs-toggle="modal">Delete Staff Member</button>
         <button type="button" class="btn btn-link" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal" data-bs-toggle="modal">Keep Staff Member</button>
-        <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button> -->
       </div>
     </div>
   </div>
 </div>
 
-<a class="float" data-bs-toggle="modal" data-bs-target="#newStaffMember" style="cursor: pointer;">
+<a class="float" data-bs-toggle="modal" data-bs-target="#newStaffMember" style="cursor: pointer;" *ngIf="!disableAddingStaff">
   <i class="bi bi-plus-lg my-float"></i>
 </a>
 
@@ -146,37 +123,39 @@
         <h5 class="modal-title" id="exampleModalToggleLabel2">New Staff Member</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <div class="mb-3">
-
-          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button> -->
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <input class="form-control input-radius mb-3" type="text" placeholder="Name" [(ngModel)]="staffMemberName" />
-                <input class="form-control input-radius" type="text" placeholder="Surname"  [(ngModel)]="staffMemberSurname"/>
-              </div>
-              <!-- <div class="carousel-item">
-                <p>Test</p>
-              </div> -->
-            </div>
-            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button> -->
+      <form role="form" name="addUserForm" #addUserForm="ngForm" autocomplete="off">
+        <div class="modal-body">
+          <div class="mb-3">
+            <input class="form-control input-radius mb-3" type="text" placeholder="Name" name="name" [(ngModel)]="staffMemberName" />
+            <input class="form-control input-radius mb-3" type="text" placeholder="Surname" name="surname" [(ngModel)]="staffMemberSurname"/>
           </div>
-
         </div>
+        <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
+          <button class="btn btn-primary" (click)="addUserToOffice()" >Next</button>
+          <!-- [disabled]="!addUserForm.valid.form" -->
+          <h4 class="fw-light fs-3 text-center text-primary py-3">{{ staffAddedMsg }}</h4>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<a class="float" data-bs-toggle="modal" data-bs-target="#newStaffDisabled" style="cursor: pointer;" *ngIf="disableAddingStaff">
+  <i class="bi bi-plus-lg my-float"></i>
+</a>
+
+<div class="modal fade" id="newStaffDisabled" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: none;">
+        <h5 class="modal-title" id="staticBackdropLabel">Warning</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
-        <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal">Next</button>
+      <div class="modal-body">
+        <h4 class="fw-bold text-warning fs-4">Please note that the maximum capacity has been reached. Remove a user or increase the office capacity to proceed.</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
       </div>
     </div>
   </div>

@@ -33,24 +33,25 @@
     </div>
 
     <div class="row d-flex align-items-center justify-content-evenly">
-      <img src="../../assets/yellow.png" style="width: 15%;" (click)="yellowSelected($event)">
-      <img src="../../assets/pale_pink.png" style="width: 15%;" (click)="palePinkSelected($event)">
-      <img src="../../assets/orange.png" style="width: 15%;" (click)="orangeSelected($event)">
-      <img src="../../assets/brown.png" style="width: 15%;" (click)="brownSelected($event)">
-      <img src="../../assets/violet.png" style="width: 15%;" (click)="violetSelected($event)">
-      <img src="../../assets/pink.png" style="width: 15%;" (click)="pinkSelected($event)">
+      <img [src]="yellow" style="width: 15%; cursor: pointer;" (click)="yellowSelected()">
+      <img [src]="pale_pink" style="width: 15%; cursor: pointer;" (click)="palePinkSelected()">
+      <img [src]="orange" style="width: 15%; cursor: pointer;" (click)="orangeSelected()">
+      <img [src]="brown" style="width: 15%; cursor: pointer;" (click)="brownSelected()">
+      <img [src]="violet" style="width: 15%; cursor: pointer;" (click)="violetSelected()">
+      <img [src]="pink" style="width: 15%; cursor: pointer;" (click)="pinkSelected()">
     </div>
 
     <div class="row d-flex align-items-center justify-content-evenly my-4">
-      <img src="../../assets/ocean_blue.png" style="width: 15%;" (click)="oceanBlueSelected($event)">
-      <img src="../../assets/green.png" style="width: 15%;" (click)="greenSelected($event)">
-      <img src="../../assets/sky_blue.png" style="width: 15%;" (click)="skyBlueSelected($event)">
-      <img src="../../assets/blue.png" style="width: 15%;" (click)="blueSelected($event)">
-      <img src="../../assets/purple.png" style="width: 15%;" (click)="purpleSelected($event)">
+      <img [src]="ocean_blue" style="width: 15%; cursor: pointer;" (click)="oceanBlueSelected()">
+      <img [src]="green" style="width: 15%; cursor: pointer;" (click)="greenSelected()">
+      <img [src]="sky_blue" style="width: 15%; cursor: pointer;" (click)="skyBlueSelected()">
+      <img [src]="blue" style="width: 15%; cursor: pointer;" (click)="blueSelected()">
+      <img [src]="purple" style="width: 15%; cursor: pointer;" (click)="purpleSelected()">
     </div>
 
     <div class="row d-flex align-items-center justify-content-center">
-      <button type="button" class="btn btn-primary" style="width: 70%; border-radius: 1.8em" (click)="addOffice()">Add Office</button>
+      <button type="button" class="btn btn-primary" style="width: 70%; border-radius: 1.8em" [disabled]="!officeForm.form.valid" (click)="addOffice()">Add Office</button>
+      <h4 class="fw-light fs-3 text-center text-primary py-3">{{ officeAddedMsg }}</h4>
     </div>
   </form>
 

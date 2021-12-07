@@ -1,17 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { initializeApp } from 'firebase/app';
-
-// const firebaseConfig = {
-//   apiKey: "apiKey",
-//   authDomain: "lekker-code-db-default-rtdb.firebaseapp.com",
-//   databaseURL: "https://lekker-code-db-default-rtdb.firebaseio.com/",
-//   storageBucket: "bucket.appspot.com"
-// };
 
 const firebaseConfig = {
   apiKey: "AIzaSyAbNr8sQlTeImQZ7FCoA52B9xbsptP7ONo",
