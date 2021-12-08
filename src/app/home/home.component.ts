@@ -42,10 +42,9 @@ export class HomeComponent implements OnInit {
     })).subscribe(response => {
       this.loader = false;
       this.officeData = response;
-      console.log(this.officeData); }, error => { this.loader = false; console.log(error); })
+      }, error => { this.loader = false; console.log(error); })
 
   }
-
 
   public dropDownClicked() {
     if (!this.arrow) {

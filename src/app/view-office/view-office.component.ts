@@ -64,7 +64,6 @@ export class ViewOfficeComponent implements OnInit {
 
   ngOnInit() {
     this.officeData = JSON.parse(localStorage.getItem("officeData"));
-    console.log(this.officeData);
     this.getUsers();
     if (this.officeData.maximumCapacity <= this.users.length) {
       this.disableAddingStaff = true;
@@ -92,7 +91,6 @@ export class ViewOfficeComponent implements OnInit {
   }
 
   public editUser(userData) {
-    console.log(userData);
     this.userData = userData;
   }
 
@@ -114,17 +112,6 @@ export class ViewOfficeComponent implements OnInit {
       this.getUsers();
     });
 
-    // this.http.put('https://lekker-code-db-default-rtdb.firebaseio.com/offices/' + this.officeData.id + '/users.json', updateUser).subscribe(response => {
-    //   console.log(response);
-    // }, error => {
-    //   console.log(error);
-    // }, () => {
-    //   console.log('Finally');
-    //   this.getUsers();
-    //   this.staffMemberName = '';
-    //   this.staffMemberSurname = '';
-    //   this.staffAddedMsg = 'User successfully added into the office';
-    // });
   }
 
   public addUserToOffice() {
@@ -136,11 +123,9 @@ export class ViewOfficeComponent implements OnInit {
         avator: this.avator_2
       }
       this.http.post('https://lekker-code-db-default-rtdb.firebaseio.com/offices/' + this.officeData.id + '/users.json', newStaffMember).subscribe(response => {
-        console.log(response);
       }, error => {
         console.log(error);
       }, () => {
-        console.log('Finally');
         this.getUsers();
         this.staffMemberName = '';
         this.staffMemberSurname = '';
@@ -169,7 +154,6 @@ export class ViewOfficeComponent implements OnInit {
 
   public deleteUserDetails() {
     const db = getDatabase();
-    console.log(db);
     let obj = ref(db, 'offices/' + this.officeData.id + '/users.json');
     remove(obj).then(() => {
       console.log('User Removed successfully');

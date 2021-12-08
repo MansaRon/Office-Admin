@@ -38,7 +38,6 @@ export class EditOfficeComponent implements OnInit {
 
   ngOnInit() {
     this.officeData = JSON.parse(localStorage.getItem("officeData"));
-    console.log(this.officeData);
     this.officeId = this.officeData.id;
     this.officeName = this.officeData.officeName;
     this.officeAddress = this.officeData.officeAddress;
@@ -58,7 +57,6 @@ export class EditOfficeComponent implements OnInit {
       officeEmail: this.officeEmail, officeNumber: this.officeNumber,
       maximumCapacity: this.maximumCapacity, officeColor: this.officeColor
       }).catch((error) => {console.log(error)}).finally(() => {
-      console.log('Success');
       this.officeAddedMsg = 'Office details successfully added';
       this.officeName = '';
       this.officeAddress = '';
