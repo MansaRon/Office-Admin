@@ -73,12 +73,11 @@ export class EditOfficeComponent implements OnInit {
   deleteOffice() {
     const db = getDatabase();
     let obj = ref(db, 'offices/' + this.officeId);
-    remove(obj).
-    then(() => {
+    remove(obj).then(() => {
       console.log('Removed successfully');
       this.timer();
-    }).
-    catch((error) => {
+    })
+    .catch((error) => {
       error
     });
   }

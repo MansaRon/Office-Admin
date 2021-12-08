@@ -1,27 +1,29 @@
-# LekkerCode
+Lekker Code Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+Description:
+This is an progressive web application that allows users to add an office, view the office details as well as also add in users within the office, remove and update their details.
 
-## Development server
+Prerequisites:
+- Node 16 and above
+- Angular 8
+- Firebase
+- Bootstrap 5
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Installation: 
+- For Node, please visit https://nodejs.org/en/download/ and depending on the OS you use, 
+  download accoringly. Its mostly recommended that a person downloads the LTS because its more
+  stable and has long term support.
+- Angular: Before downloading angular, please ensure that you have downloaded Node and its running
+  on your machine, as its a prerequisite to run angular on. Once that's confirmed, head on over to
+  https://angular.io/guide/setup-local and follow the steps to set it up.
+- Firebase: As with Angular, if you haven't successfully run Angular on your machine, please have
+  it running first before installing it. Open your project and open the terminal or opne your CLI
+  and navigate to your project folder. Once there, simply enter npm i firebase into the terminal and run. Then head into the console on firebase on theit website, under settings, retrieve the Firebase configuration (Already done for you) and paste it in either your environment or app module to instantiate firebase into your project.
+- Bootstrap: Head to https://getbootstrap.com/. There's 2 ways of installing bootstrap: Copy the css  link/script and paste it in your index file between the header 
+  tags, or go into your terminal and run npm i bootstrap.
 
-## Code scaffolding
+URL for the project: 
+  https://lekker-code-db.web.app/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Contact: 
+ -kramashia101@gmail.com

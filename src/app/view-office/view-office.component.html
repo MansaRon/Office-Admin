@@ -1,3 +1,9 @@
+<div class="container-fluid text-center" id=loading *ngIf="loader">
+  <div class="spinner-grow text-primary text-center" role="status" *ngIf="loader" id="loading-image">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
 <div class="container-fluid backgroundColor pt-5 pb-5 px-3">
   <div class="d-flex justify-content-start align-items-center">
     <img src="../../assets/arrow-left.png" (click)="goBack()" style="cursor: pointer;">
@@ -54,7 +60,7 @@
     <h1> {{ users.length }}</h1>
   </div>
 
-  <div class="d-flex justify-content-between align-items-center py-2" *ngFor="let userDetails of users | filter: filterUsers">
+  <div class="d-flex justify-content-between align-items-center py-2" *ngFor="let userDetails of users">
     <img [src]="userDetails.avator">
     <h3> {{ userDetails.name + ' ' + userDetails.surname }}</h3>
     <img src="../../assets/edit_user.png" (click)="editUser(userDetails)" data-bs-toggle="modal" data-bs-target="#staffMember" style="cursor: pointer;">
@@ -76,6 +82,7 @@
   </div>
 </div>
 
+<!-- Editing Staff Member -->
 <div class="modal fade" id="editStaffMember" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -96,7 +103,9 @@
     </div>
   </div>
 </div>
+<!-- Editing Staff Member -->
 
+<!-- Delete Staff Member -->
 <div class="modal fade" id="deleteStaffMember" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -105,13 +114,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-footer d-flex justify-content-center" style="border-top: none;">
-        <button type="button" class="btn btn-danger" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal" data-bs-toggle="modal">Delete Staff Member</button>
-        <button type="button" class="btn btn-link" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal" data-bs-toggle="modal">Keep Staff Member</button>
+        <button type="button" class="btn btn-danger" style="width: 80%; border-radius: 1.8em" (click)="deleteUserDetails()">Delete Staff Member</button>
+        <button type="button" class="btn btn-link" style="width: 80%; border-radius: 1.8em" data-bs-dismiss="modal">Keep Staff Member</button>
       </div>
     </div>
   </div>
 </div>
+<!-- Delete Staff Member -->
 
+<!-- Adding new user -->
 <a class="float" data-bs-toggle="modal" data-bs-target="#newStaffMember" style="cursor: pointer;" *ngIf="!disableAddingStaff">
   <i class="bi bi-plus-lg my-float"></i>
 </a>
@@ -139,7 +150,9 @@
     </div>
   </div>
 </div>
+<!-- Adding new user -->
 
+<!-- Disabling adding new user -->
 <a class="float" data-bs-toggle="modal" data-bs-target="#newStaffDisabled" style="cursor: pointer;" *ngIf="disableAddingStaff">
   <i class="bi bi-plus-lg my-float"></i>
 </a>
@@ -160,3 +173,4 @@
     </div>
   </div>
 </div>
+<!-- Disabling adding new user -->

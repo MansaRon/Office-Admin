@@ -57,7 +57,7 @@ export class ViewOfficeComponent implements OnInit {
   newStaffName: string = '';
   newStaffSurname: string = '';
   userData: any;
-
+  loader: boolean = false;
   filterUsers: string = ''
 
   constructor(private router: Router, private http: HttpClient) { }
@@ -105,7 +105,8 @@ export class ViewOfficeComponent implements OnInit {
     console.log(updateUser);
     const db = getDatabase();
     let obj = ref(db, 'offices/' + this.officeData.id + '/users.json');
-    update(obj, {updateUser}).catch((error) => {console.log(error)}).finally(() => {
+    set(obj, {updateUser}).catch((error) => {
+      console.log(error)}).finally(() => {
       console.log('Finally');
       this.staffMemberName = '';
       this.staffMemberSurname = '';
@@ -113,6 +114,17 @@ export class ViewOfficeComponent implements OnInit {
       this.getUsers();
     });
 
+    // this.http.put('https://lekker-code-db-default-rtdb.firebaseio.com/offices/' + this.officeData.id + '/users.json', updateUser).subscribe(response => {
+    //   console.log(response);
+    // }, error => {
+    //   console.log(error);
+    // }, () => {
+    //   console.log('Finally');
+    //   this.getUsers();
+    //   this.staffMemberName = '';
+    //   this.staffMemberSurname = '';
+    //   this.staffAddedMsg = 'User successfully added into the office';
+    // });
   }
 
   public addUserToOffice() {
@@ -147,7 +159,24 @@ export class ViewOfficeComponent implements OnInit {
          }
        }
        return officeArray;
-    })).subscribe(response => { this.users = response; console.log(this.users); }, error => { console.log(error); })
+    })).subscribe(response => {
+      this.users = response;
+      console.log(this.users);
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  public deleteUserDetails() {
+    const db = getDatabase();
+    console.log(db);
+    let obj = ref(db, 'offices/' + this.officeData.id + '/users.json');
+    remove(obj).then(() => {
+      console.log('User Removed successfully');
+    })
+    .catch((error) => {
+      error
+    });
   }
 
 }

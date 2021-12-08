@@ -1,3 +1,9 @@
+<div class="container-fluid text-center" id=loading *ngIf="loader">
+  <div class="spinner-grow text-primary text-center" role="status" *ngIf="loader" id="loading-image">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
 <div class="container-fluid backgroundColor pt-5 pb-5 px-3">
   <div class="d-flex justify-content-start align-items-center">
     <img src="../../assets/arrow-left.png" (click)="goBack()" style="cursor: pointer;">
@@ -54,7 +60,5 @@
       <h4 class="fw-light fs-3 text-center text-primary py-3">{{ officeAddedMsg }}</h4>
     </div>
   </form>
-
-
 
 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getDatabase, ref, set, push } from "firebase/database";
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -33,6 +32,7 @@ export class CreateOfficeComponent implements OnInit {
   officeAddedMsg: string = '';
   counter: number = 1;
   publicTimer: any;
+  loader: boolean = false;
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -43,57 +43,16 @@ export class CreateOfficeComponent implements OnInit {
   }
 
   public addOffice() {
-    const db = getDatabase();
-    const timestamp = new Date().valueOf();
-
+    this.loader = true;
     let office = { officeName: this.officeName, officeAddress: this.officeAddress,
       officeEmail: this.officeEmail, officeNumber: this.officeNumber,
       maximumCapacity: this.maximumCapacity, officeColor: this.officeColor,
       numOfficePeople: this.numOfficePeople}
 
-    // const postListRef = ref(db, 'offices');
-    // const newPostRef = push(postListRef);
-    // set(newPostRef, {
-    //   officeName: this.officeName,
-    //   officeAddress: this.officeAddress,
-    //   officeEmail: this.officeEmail,
-    //   officeNumber: this.officeNumber,
-    //   maximumCapacity: this.maximumCapacity,
-    //   officeColor: this.officeColor,
-    //   numOfficePeople: this.numOfficePeople}).catch((error) => {console.log(error)}).finally(() => {
-    //     console.log('Success');
-    //     this.officeAddedMsg = 'Office details successfully added';
-    //     this.officeName = '';
-    //     this.officeAddress = '';
-    //     this.officeEmail = '';
-    //     this.officeNumber = '';
-    //     this.maximumCapacity = null;
-    //     this.officeColor = '';
-    //     this.timer();
-    //   });
-
-    // let obj = ref(db, 'offices/' + timestamp);
-    // set(obj, { officeName: this.officeName, officeAddress: this.officeAddress,
-    //   officeEmail: this.officeEmail, officeNumber: this.officeNumber,
-    //   maximumCapacity: this.maximumCapacity, officeColor: this.officeColor,
-    //   numOfficePeople: this.numOfficePeople}).catch((error) => {console.log(error)}).finally(() => {
-    //   console.log('Success');
-    //   this.officeAddedMsg = 'Office details successfully added';
-    //   this.officeName = '';
-    //   this.officeAddress = '';
-    //   this.officeEmail = '';
-    //   this.officeNumber = '';
-    //   this.maximumCapacity = null;
-    //   this.officeColor = '';
-    //   this.timer();
-    // });
-
     this.http.post('https://lekker-code-db-default-rtdb.firebaseio.com/offices.json', office).subscribe(response => {
-      console.log(response);
     }, error => {
       console.log(error);
     }, () => {
-      console.log('Finally');
       this.officeAddedMsg = 'Office details successfully added';
       this.officeName = '';
       this.officeAddress = '';
@@ -101,6 +60,7 @@ export class CreateOfficeComponent implements OnInit {
       this.officeNumber = '';
       this.maximumCapacity = '';
       this.officeColor = '';
+      this.loader = false;
       this.timer();
     })
   }
