@@ -74,7 +74,7 @@ export class ViewOfficeComponent implements OnInit {
   }
 
   public testChange(filterUsers) {
-    console.log(filterUsers);
+
   }
 
   public goBack() {
@@ -100,12 +100,10 @@ export class ViewOfficeComponent implements OnInit {
       surname: this.newStaffSurname,
       avator: this.avator_5
     }
-    console.log(updateUser);
+
     const db = getDatabase();
     let obj = ref(db, 'offices/' + this.officeData.id + '/users.json');
-    set(obj, {updateUser}).catch((error) => {
-      console.log(error)}).finally(() => {
-      console.log('Finally');
+    set(obj, {updateUser}).catch((error) => {}).finally(() => {
       this.staffMemberName = '';
       this.staffMemberSurname = '';
       this.staffUpdateMsg = 'User successfully updated.';
@@ -115,7 +113,6 @@ export class ViewOfficeComponent implements OnInit {
   }
 
   public addUserToOffice() {
-    // Compare the number of employees to the capacity of users available
 
       let newStaffMember = {
         name: this.staffMemberName,
@@ -124,7 +121,7 @@ export class ViewOfficeComponent implements OnInit {
       }
       this.http.post('https://lekker-code-db-default-rtdb.firebaseio.com/offices/' + this.officeData.id + '/users.json', newStaffMember).subscribe(response => {
       }, error => {
-        console.log(error);
+
       }, () => {
         this.getUsers();
         this.staffMemberName = '';
@@ -146,9 +143,8 @@ export class ViewOfficeComponent implements OnInit {
        return officeArray;
     })).subscribe(response => {
       this.users = response;
-      console.log(this.users);
     }, error => {
-      console.log(error);
+
     })
   }
 
@@ -156,10 +152,10 @@ export class ViewOfficeComponent implements OnInit {
     const db = getDatabase();
     let obj = ref(db, 'offices/' + this.officeData.id + '/users.json');
     remove(obj).then(() => {
-      console.log('User Removed successfully');
+
     })
     .catch((error) => {
-      error
+
     });
   }
 

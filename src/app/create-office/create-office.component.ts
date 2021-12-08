@@ -50,9 +50,7 @@ export class CreateOfficeComponent implements OnInit {
       numOfficePeople: this.numOfficePeople}
 
     this.http.post('https://lekker-code-db-default-rtdb.firebaseio.com/offices.json', office).subscribe(response => {
-    }, error => {
-      console.log(error);
-    }, () => {
+    }, error => {}, () => {
       this.officeAddedMsg = 'Office details successfully added';
       this.officeName = '';
       this.officeAddress = '';

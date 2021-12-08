@@ -56,7 +56,7 @@ export class EditOfficeComponent implements OnInit {
     set(obj, { officeName: this.officeName, officeAddress: this.officeAddress,
       officeEmail: this.officeEmail, officeNumber: this.officeNumber,
       maximumCapacity: this.maximumCapacity, officeColor: this.officeColor
-      }).catch((error) => {console.log(error)}).finally(() => {
+      }).catch((error) => {}).finally(() => {
       this.officeAddedMsg = 'Office details successfully added';
       this.officeName = '';
       this.officeAddress = '';
@@ -72,12 +72,9 @@ export class EditOfficeComponent implements OnInit {
     const db = getDatabase();
     let obj = ref(db, 'offices/' + this.officeId);
     remove(obj).then(() => {
-      console.log('Removed successfully');
       this.timer();
     })
-    .catch((error) => {
-      error
-    });
+    .catch((error) => {});
   }
 
   public timer(): void {

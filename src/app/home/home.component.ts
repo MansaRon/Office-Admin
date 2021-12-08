@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     })).subscribe(response => {
       this.loader = false;
       this.officeData = response;
-      }, error => { this.loader = false; console.log(error); })
+      }, error => { this.loader = false; })
 
   }
 
